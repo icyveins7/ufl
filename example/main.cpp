@@ -10,7 +10,7 @@ int main()
     ufl::UpfirLerp<float> upfirlerp;
 
     // Define upsample rate
-    int up = 10;
+    int up = 2;
 
     // Define taps
     std::vector<float> taps = {0.1, 1.0, 0.1};
@@ -25,12 +25,15 @@ int main()
         v = std::complex<float>(std::rand() / (float)RAND_MAX, std::rand() / (float)RAND_MAX);
         std::cout << v << std::endl;
     }
+    const double T = 0.01;
+    printf("Input data is from [0, %f], upsampled should be from [0, %f]\n",
+           T * (input.size()-1), (T/up) * (up * input.size() - 1));
 
     // Interpolate
     std::vector<std::complex<float>> output;
-    std::vector<double> t = {0.01, 0.03, 0.045, 0.06, 0.062, 0.071};
+    std::vector<double> t = {0.004, 0.03, 0.045, 0.06, 0.062, 0.095, 0.10};
     upfirlerp.interpolate(
-        input, 0.1, t, output
+        input, 0.01, t, output
     );
 
     // Print
