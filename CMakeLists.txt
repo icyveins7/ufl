@@ -40,3 +40,5 @@ if (DEFINED NANOBIND_BUILD_TYPE)
     message("Packaging nanobind extension..")
     add_subdirectory(pyufl)
 endif()
+
+add_subdirectory(matufl)
